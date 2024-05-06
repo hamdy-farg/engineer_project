@@ -1,6 +1,8 @@
 import 'package:engneers_app/bussniss_logic/cubit/searching_cubit.dart';
 import 'package:engneers_app/constants/colors/colors.dart';
 import 'package:engneers_app/constants/diamentions/diamentions.dart';
+import 'package:engneers_app/data/model/invoise_model.dart';
+import 'package:engneers_app/mahmoud/PdfPreviewPage.dart';
 import 'package:engneers_app/presentaion/widgets/operations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class AddItemScreen extends StatelessWidget {
   List unit_list = [];
   TextEditingController _SearchTextController = TextEditingController();
   bool _isSearching = false;
+
   @override
   Widget build(BuildContext context) {
     Daimentions _daimentions = Daimentions(context: context);
@@ -59,7 +62,6 @@ class AddItemScreen extends StatelessWidget {
             child: GridView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: (MediaQuery.of(context).size.height / 5.2) /
@@ -126,16 +128,47 @@ class AddItemScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed("/ItemFormScreen");
-        },
-        backgroundColor: MyColors.primary_color,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 30.sp,
-        ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PdfPreviewPage(
+                    invoice: Invoice(
+                        'David Thomas',
+                        '123 Fake St\r\nBermuda Triangle',
+                        LineItem(
+                            Nr: 01,
+                            Code: 'W01',
+                            Photo: 'images\preview.jpg',
+                            Category: 'Category',
+                            Note: 'Note',
+                            Width: 100,
+                            Height: 20,
+                            Position: 'Kitchen',
+                            AreamM2: 10),
+                        'Unit Name'),
+                  ),
+                ),
+              );
+              // rootBundle.
+            },
+            child: Icon(Icons.picture_as_pdf),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("/ItemFormScreen");
+            },
+            backgroundColor: MyColors.primary_color,
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 30.sp,
+            ),
+          ),
+        ],
       ),
     );
   }

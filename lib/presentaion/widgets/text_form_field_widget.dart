@@ -32,11 +32,13 @@ class TextFormFieldWidget extends StatelessWidget {
         TextFormField(
           textDirection: text_direction,
           maxLines: max_line,
+          readOnly:  read_only,
           keyboardType: keybourdType,
           obscureText: secure,
           controller: text_edting_controller,
           validator: validator,
           decoration: InputDecoration(
+            
             suffixIcon: suffixIcon,
             hintText: "$hint_text",
             labelStyle: TextStyle(color: Colors.black),

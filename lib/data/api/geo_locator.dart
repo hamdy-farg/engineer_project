@@ -1,17 +1,15 @@
 import 'dart:async';
+import 'package:engneers_app/constants/colors/colors.dart';
+import 'package:engneers_app/presentaion/widgets/text_form_field_widget.dart';
+import 'package:engneers_app/presentaion/widgets/wide_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class GetLatLong extends StatefulWidget {
-  const GetLatLong({Key? key}) : super(key: key);
-
-  @override
-  State<GetLatLong> createState() => _GetLocationState();
-}
-
-class _GetLocationState extends State<GetLatLong> {
-  Future<void> _openMap(String longitude, String latitude) async {
+class GeoLocator {
+  GeoLocator();
+  openMap(String longitude, String latitude) async {
     String current_location_url =
         'https://maps.google.com/?q=$longitude,$latitude';
     if (await canLaunchUrlString(current_location_url)) {
@@ -19,50 +17,9 @@ class _GetLocationState extends State<GetLatLong> {
     } else {
       throw "Can't launch $current_location_url";
     }
-    print('=================================');
-    print(current_location_url);
   }
 
-  late String locationMessage = 'Current Location of User';
-  late String long = '';
-  late String lat = '';
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 300,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(locationMessage),
-          SizedBox(height: 20),
-          Text('Latitude: $lat'),
-          Text('Longitude: $long'),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              _getCurrentLocation().then((value) {
-                setState(() {
-                  lat = '${value.latitude}';
-                  long = '${value.longitude}';
-                });
-              });
-            },
-            child: Text('Get Location'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              _openMap(lat, long);
-            },
-            child: Text('Open Location in Maps'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<Position> _getCurrentLocation() async {
+  Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
 

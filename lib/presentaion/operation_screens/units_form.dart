@@ -2,6 +2,7 @@ import 'package:engneers_app/constants/colors/colors.dart';
 import 'package:engneers_app/constants/diamentions/diamentions.dart';
 import 'package:engneers_app/data/model/item_model.dart';
 import 'package:engneers_app/data/model/unit_model.dart';
+import 'package:engneers_app/presentaion/widgets/geo_locator.dart';
 import 'package:engneers_app/presentaion/widgets/text_form_field_widget.dart';
 import 'package:engneers_app/presentaion/widgets/wide_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,19 +17,31 @@ class UnitForm extends StatelessWidget {
   TextEditingController eng_name_controller = TextEditingController();
   TextEditingController location_description_controller =
       TextEditingController();
+  TextEditingController location_address = TextEditingController();
+
   UnitModel? unit_model;
   static List<UnitModel> list_of_units = [];
 
   UnitForm({super.key, this.unit_model});
 
   GlobalKey<FormState> formKey = GlobalKey();
+  _addTaskToDB() {
+   unit: UnitModel(
+      customer_name: customer_name_controller.text,
+      eng_name: eng_name_controller.text,
+      location_address: location_address.text,
+      location_description: location_description_controller.text,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (unit_model != null) {
-      customer_name_controller.text = unit_model!.customer_name;
-      eng_name_controller.text = unit_model!.engineer_name;
+      customer_name_controller.text = unit_model!.customer_name!;
+      eng_name_controller.text = unit_model!.eng_name!;
 
-      location_description_controller.text = unit_model!.description;
+      location_description_controller.text = unit_model!.location_description!;
+      location_address.text = unit_model!.location_address!;
     }
     return Scaffold(
       appBar: AppBar(
@@ -78,7 +91,9 @@ class UnitForm extends StatelessWidget {
                     }
                   },
                 ),
-                GetLatLong(),
+                GetLatLong(
+                  address_location: location_address,
+                ),
                 TextFormFieldWidget(
                   hint_text: "location description",
                   text_edting_controller: location_description_controller,
@@ -95,13 +110,14 @@ class UnitForm extends StatelessWidget {
                   splashColor: MyColors.Splash_color,
                   onTap: () {
                     if (formKey.currentState!.validate()) {
-                      String id = Uuid().v1();
+                      _addTaskToDB();
                       list_of_units.add(UnitModel(
-                          ID: id,
                           customer_name: customer_name_controller.text,
-                          engineer_name: eng_name_controller.text,
-                          location: "",
-                          description: location_description_controller.text));
+                          eng_name: eng_name_controller.text,
+                          location_address: location_address.text,
+                          location_description:
+                              location_description_controller.text,
+                          UID: 1));
                       Navigator.of(context).pop();
                     }
                   },

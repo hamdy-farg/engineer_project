@@ -1,4 +1,6 @@
+
 import 'package:engneers_app/bussniss_logic/cubit/searching_cubit.dart';
+import 'package:engneers_app/bussniss_logic/db_handel_bloc/users/bloc/user_bloc.dart';
 import 'package:engneers_app/constants/colors/colors.dart';
 import 'package:engneers_app/constants/diamentions/diamentions.dart';
 import 'package:engneers_app/data/model/unit_model.dart';
@@ -54,80 +56,102 @@ class AddUnitScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            height: MediaQuery.of(context).size.height /
-                1.1470588235294117647058823529412,
-            child: ListView.builder(
-              itemCount: unit_list.length,
-              itemBuilder: (conetxt, index) {
-                return Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(
-                      vertical: _daimentions.Height5,
-                      horizontal: _daimentions.Width5),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: .5,
-                          blurRadius: .5,
-                          offset: Offset(0, .1), // changes position of shadow
-                        ),
-                      ]),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(10),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {
-                        Navigator.of(context).pushNamed("/AddItemScreen");
-                      },
-                      onLongPress: () {},
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: _daimentions.Width5,
-                            vertical: _daimentions.Height10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                    "customer  :${unit_list[index].customer_name}"),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => UnitForm(
-                                                unit_model: unit_list[index])));
-                                  },
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(color: Colors.red),
+        child: BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserInitial) {
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil("/", (route) => false);
+            }
+            // TODO: implement listener
+          },
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              height: MediaQuery.of(context).size.height /
+                  1.1470588235294117647058823529412,
+              child: ListView.builder(
+                itemCount: unit_list.length,
+                itemBuilder: (conetxt, index) {
+                  return BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      return Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.symmetric(
+                            vertical: _daimentions.Height5,
+                            horizontal: _daimentions.Width5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.5),
+                                spreadRadius: .5,
+                                blurRadius: .5,
+                                offset:
+                                    Offset(0, .1), // changes position of shadow
+                              ),
+                            ]),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Navigator.of(context).pushNamed("/AddItemScreen");
+                            },
+                            onLongPress: () {
+                              UserBloc userBloc =
+                                  BlocProvider.of<UserBloc>(context);
+
+                              userBloc.add(SingOut());
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: _daimentions.Width5,
+                                  vertical: _daimentions.Height10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                          "customer  :${unit_list[index].customer_name}"),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UnitForm(
+                                                          unit_model: unit_list[
+                                                              index])));
+                                        },
+                                        child: Text(
+                                          "Edit",
+                                          style: TextStyle(color: Colors.red),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
+                                  SizedBox(
+                                    height: _daimentions.Height5,
+                                  ),
+                                  Text(
+                                      "description :${unit_list[index].location_description}"),
+                                  SizedBox(
+                                    height: _daimentions.Height5,
+                                  ),
+                                  Text("engineer :${unit_list[index].eng_name}")
+                                ],
+                              ),
                             ),
-                            SizedBox(
-                              height: _daimentions.Height5,
-                            ),
-                            Text(
-                                "description :${unit_list[index].description}"),
-                            SizedBox(
-                              height: _daimentions.Height5,
-                            ),
-                            Text("engineer :${unit_list[index].engineer_name}")
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                );
-              },
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ),

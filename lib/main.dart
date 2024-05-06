@@ -3,6 +3,9 @@ import 'package:engneers_app/bussniss_logic/auth_bloc/bloc/auth_bloc.dart';
 import 'package:engneers_app/bussniss_logic/cubit/area_cubit/cubit/area_cubit.dart';
 import 'package:engneers_app/bussniss_logic/cubit/password_secure_cubit.dart';
 import 'package:engneers_app/bussniss_logic/cubit/searching_cubit.dart';
+import 'package:engneers_app/bussniss_logic/db_handel_bloc/users/bloc/user_bloc.dart';
+import 'package:engneers_app/db/sqldb.dart';
+import 'package:engneers_app/presentaion/auth_screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:engneers_app/app_router.dart';
@@ -23,6 +26,8 @@ class NileApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SqlDb db = SqlDb();
+    print(db.db);
     return ScreenUtilInit(
       child: MultiBlocProvider(
         providers: [
@@ -41,11 +46,14 @@ class NileApp extends StatelessWidget {
           BlocProvider(
             create: (context) => AreaCubit(),
             child: Container(),
+          ),
+          BlocProvider(
+            create: (context) => UserBloc(),
           )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: '/UnitFormScreen',
+          initialRoute: '/',
           onGenerateRoute: appRouter.generateRoute,
         ),
       ),

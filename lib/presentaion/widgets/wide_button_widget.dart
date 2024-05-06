@@ -7,7 +7,11 @@ class WidButton extends StatelessWidget {
   final Color color;
   final Color splashColor;
   double width;
+  double? size_of_text;
+  bool is_louding;
   WidButton({
+    this.is_louding = false,
+    this.size_of_text = null,
     this.width = double.infinity,
     Key? key,
     this.onTap,
@@ -28,12 +32,16 @@ class WidButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: color,
         child: InkWell(
-          
           borderRadius: BorderRadius.circular(10),
           onTap: onTap,
           splashColor: splashColor,
           child: Center(
-            child: MeduimText(text: "$text"),
+            child: is_louding
+                ? CircularProgressIndicator.adaptive()
+                : MeduimText(
+                    text: "$text",
+                    size: size_of_text,
+                  ),
           ),
         ),
       ),

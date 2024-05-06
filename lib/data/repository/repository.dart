@@ -14,10 +14,10 @@ class GetRepository {
 }
 
 class SetRepository {
-  static List<User> _users = [];
+  static List<UserModel> _users = [];
 
   setUser(String full_name, String phone_number, String password) {
-    _users.add(User(
+    _users.add(UserModel(
       full_name: full_name,
       phone_number: phone_number,
       password: password,
