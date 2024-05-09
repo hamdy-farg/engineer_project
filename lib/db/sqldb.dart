@@ -1,4 +1,6 @@
-import 'package:engneers_app/data/model/user_model.dart';
+
+import 'package:engineer_app/data/model/unit_model.dart';
+import 'package:engineer_app/data/model/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 import "package:path/path.dart";
 
@@ -65,56 +67,145 @@ class SqlDb {
   }
 
 // to check if user exist or not
-  Future<UserModel>? getUsers(String? password, String phone_number) async {
-    print(password);
+}
 
+class GetData extends SqlDb {
+  Future<List<UnitModel>> getAllUnits({required int UID}) async {
+    List<UnitModel> unit_models = [];
+    List<Map<String, dynamic>>? maps;
+    await SqlDb().db;
+    print(UID);
+    maps = await SqlDb._db!.query("Units", where: 'UID = ?', whereArgs: [UID]);
+    print(maps);
+    // to convert the map of Units to List of UitModel
+    for (var i in maps) {
+      unit_models.add(UnitModel.fromMap(i));
+    }
+    print(unit_models);
+    return unit_models;
+  }
+
+  Future<UnitModel>? getUnit({required int id, required int UID}) async {
     List<Map<String, dynamic>>? map;
+    await SqlDb().db;
+    map = await SqlDb._db!
+        .query("Units", where: 'UID = ?, ID = ?', whereArgs: [UID, id]);
+    if (map.length < 1) {
+      return UnitModel(
+          customer_name: "1",
+          eng_name: "eng_name",
+          location_address: "location_address",
+          location_description: "location_description",
+          UID: 0);
+    }
+    return UnitModel.fromMap(map.first);
+  }
+
+  ////
+  // get user  : get the user or return dumy user or check if user exists
+  // @password : nullable
+  // @phone_number :
+  ////
+  Future<UserModel>? getUsers(String? password, String phone_number) async {
+    List<Map<String, dynamic>>? map;
+    await SqlDb().db;
+
+    // to check if i'm gonna reset password or login
     if (password != null) {
-      map = await _db!.query(
+      map = await SqlDb._db!.query(
         "Users",
         where: 'phone_number = ? AND password = ?',
         whereArgs: [phone_number, password],
       );
+      // if the  map  len is smaller than one so we cannot find the
       if (map.length < 1) {
         return UserModel(
             full_name: "0", phone_number: "phone_number", password: "password");
       }
     } else {
-      map = await _db!.query(
+      map = await SqlDb._db!.query(
         "Users",
         where: 'phone_number = ?',
         whereArgs: [phone_number],
       );
+      // if the  map  len is smaller than one so we cannot find the
+
       if (map.length < 1) {
         return UserModel(
             full_name: "0", phone_number: "phone_number", password: "password");
       }
     }
-    return UserModel.fromMap(map!.first);
+    // here we get the map of one user
+    return UserModel.fromMap(map.first);
+  }
+}
+
+class UpdataData extends SqlDb {
+  updateUnit(UnitModel unit) async {
+    await SqlDb().db;
+    print("deeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    try {
+      var i = await SqlDb._db!.rawUpdate(
+          'UPDATE Units SET  CUSTOMER_NAME = ?,ENG_NAME = ?, LOCATION_ADDRESS = ?, LOCATION_DESCRIPTION = ?   WHERE ID = ?',
+          [
+            unit.customer_name,
+            unit.eng_name,
+            unit.location_address,
+            unit.location_description,
+            unit.ID
+          ]);
+      print("$i 0000000000000");
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
+  Future<int> updateUser(UserModel user) async {
+    await SqlDb().db;
+
+    return await SqlDb._db!.update(
+      'users',
+      user.toMap(),
+      where: 'id = ?',
+      whereArgs: [user.id],
+    );
+  }
+}
+
+class InsertData extends SqlDb {
   Future<int> insertUser(UserModel user) async {
-    var check_if_exists = await _db!.query("users",
+    await SqlDb().db;
+
+    var check_if_exists = await SqlDb._db!.query("users",
         where: "phone_number = ?", whereArgs: [user.phone_number]);
     if (check_if_exists.length < 1) {
-      int inserted_user = await _db!.insert('users', user.toMap(),
+      int inserted_user = await SqlDb._db!.insert('users', user.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace);
       return inserted_user;
     }
     return 0;
   }
 
-  Future<void> updateUser(UserModel user) async {
-    await _db!.update(
-      'users',
-      user.toMap(),
-      where: 'id = ?',
-      whereArgs: [user.id],
-    );
-    print("${user} ");
+  Future<int> insertUnit(UnitModel unit) async {
+    await SqlDb().db;
+
+    int inserted_user = await SqlDb._db!.insert('units', unit.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+    print(inserted_user);
+    return inserted_user;
+  }
+}
+
+class DeleteData extends SqlDb {
+  Future<void> deleteUser(int? id) async {
+    await SqlDb().db;
+
+    await SqlDb._db!.delete('Users', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> deleteUser(int? id) async {
-    await _db!.delete('Users', where: 'id = ?', whereArgs: [id]);
+  Future<void> deleteUnit(int? id) async {
+    await SqlDb().db;
+
+    await SqlDb._db!.delete('Units', where: 'id = ?', whereArgs: [id]);
   }
 }

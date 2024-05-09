@@ -1,4 +1,4 @@
-import 'package:engneers_app/presentaion/widgets/text_widgets.dart';
+import 'package:engineer_app/presentaion/widgets/text_widgets.dart';
 import 'package:flutter/material.dart';
 
 class WidButton extends StatelessWidget {

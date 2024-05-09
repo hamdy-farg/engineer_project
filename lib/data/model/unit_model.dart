@@ -1,35 +1,35 @@
 class UnitModel {
   int? ID;
   String? customer_name;
-  String? eng_name;
-  String? location_address;
-  String? location_description;
-  int? UID;
+  String eng_name;
+  String location_address;
+  String location_description;
+  int UID;
   UnitModel({
     this.ID,
     required this.customer_name,
     required this.eng_name,
     required this.location_address,
     required this.location_description,
-    this.UID,
+    required this.UID,
   });
-  UnitModel.fromJson(Map<String, dynamic> json) {
-    ID = json["id"];
-    customer_name = json["customer_name"];
-    customer_name = json["eng_name"];
-    customer_name = json["location_address"];
-    customer_name = json["location_description"];
-    UID = json["UID"];
+  factory UnitModel.fromMap(Map<String, dynamic> json) {
+    return UnitModel(
+        ID: json["ID"],
+        customer_name: json["CUSTOMER_NAME"],
+        eng_name: json["ENG_NAME"],
+        location_address: json["LOCATION_ADDRESS"],
+        location_description: json["LOCATION_DESCRIPTION"],
+        UID: json["UID"]);
   }
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-
-    data["id"] = this.ID;
-    data["customer_name"] = this.customer_name;
-    data["eng_name"] = this.eng_name;
-    data["location_address"] = this.location_address;
-    data["location_description"] = this.location_description;
-    data["UID"] = this.UID;
-    return data;
+  Map<String, dynamic> toMap() {
+    return {
+      "ID": ID,
+      "CUSTOMER_NAME": customer_name,
+      "ENG_NAME": eng_name,
+      "LOCATION_ADDRESS": location_address,
+      "LOCATION_DESCRIPTION": location_description,
+      "UID": UID
+    };
   }
 }

@@ -1,5 +1,5 @@
 
-import 'package:engneers_app/bussniss_logic/cubit/searching_cubit.dart';
+import 'package:engineer_app/bussniss_logic/cubit/searching_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

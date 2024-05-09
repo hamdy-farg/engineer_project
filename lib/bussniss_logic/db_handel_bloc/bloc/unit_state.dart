@@ -8,8 +8,13 @@ final class UnitInitial extends UnitState {}
 class UnitLoading extends UnitState {}
 
 class UnitLoaded extends UnitState {
-  final List<UnitModel> Units;
-  UnitLoaded(this.Units);
+  final UnitModel Unit;
+  UnitLoaded(this.Unit);
+}
+
+class AllUnitsLoaded extends UnitState {
+  final List<UnitModel>  Units;
+  AllUnitsLoaded(this.Units);
 }
 
 class UnitError extends UnitState {

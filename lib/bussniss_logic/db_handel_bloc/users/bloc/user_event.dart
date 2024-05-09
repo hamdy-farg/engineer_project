@@ -6,7 +6,7 @@ sealed class UserEvent {}
 // to sign in :::::
 class LoadUser extends UserEvent {
   final String phone_number;
-  String? password;
+  final String? password;
   LoadUser({this.password, required this.phone_number});
 }
 
@@ -21,8 +21,8 @@ class InsertUser extends UserEvent {
 
 // change  password and phone number
 class UpdateUser extends UserEvent {
-  String phone_number;
-  UpdateUser(this.phone_number);
+  final UserModel user;
+  UpdateUser(this.user);
 }
 
 // delete acount ::::

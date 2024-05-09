@@ -1,11 +1,11 @@
-import 'package:engneers_app/bussniss_logic/cubit/area_cubit/cubit/area_cubit.dart';
-import 'package:engneers_app/constants/colors/colors.dart';
-import 'package:engneers_app/constants/diamentions/diamentions.dart';
-import 'package:engneers_app/data/model/item_model.dart';
-import 'package:engneers_app/presentaion/operation_screens/item_operations/item_widgets/simple_dialog.dart';
-import 'package:engneers_app/presentaion/widgets/text_form_field_widget.dart';
-import 'package:engneers_app/presentaion/widgets/text_widgets.dart';
-import 'package:engneers_app/presentaion/widgets/wide_button_widget.dart';
+import 'package:engineer_app/bussniss_logic/cubit/area_cubit/cubit/area_cubit.dart';
+import 'package:engineer_app/constants/colors/colors.dart';
+import 'package:engineer_app/constants/diamentions/diamentions.dart';
+import 'package:engineer_app/data/model/item_model.dart';
+import 'package:engineer_app/presentaion/operation_screens/item_operations/item_widgets/simple_dialog.dart';
+import 'package:engineer_app/presentaion/widgets/text_form_field_widget.dart';
+import 'package:engineer_app/presentaion/widgets/text_widgets.dart';
+import 'package:engineer_app/presentaion/widgets/wide_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,33 +1,48 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:engneers_app/bussniss_logic/auth_bloc/bloc/auth_bloc.dart';
-import 'package:engneers_app/bussniss_logic/cubit/area_cubit/cubit/area_cubit.dart';
-import 'package:engneers_app/bussniss_logic/cubit/password_secure_cubit.dart';
-import 'package:engneers_app/bussniss_logic/cubit/searching_cubit.dart';
-import 'package:engneers_app/bussniss_logic/db_handel_bloc/users/bloc/user_bloc.dart';
-import 'package:engneers_app/db/sqldb.dart';
-import 'package:engneers_app/presentaion/auth_screens/sign_up_screen.dart';
+import 'package:engineer_app/bussniss_logic/cubit/area_cubit/cubit/area_cubit.dart';
+import 'package:engineer_app/bussniss_logic/cubit/password_secure_cubit.dart';
+import 'package:engineer_app/bussniss_logic/cubit/searching_cubit.dart';
+import 'package:engineer_app/bussniss_logic/db_handel_bloc/bloc/unit_bloc.dart';
+import 'package:engineer_app/bussniss_logic/db_handel_bloc/users/bloc/user_bloc.dart';
+import 'package:engineer_app/data/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:engneers_app/app_router.dart';
+import 'package:engineer_app/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  int? isLogin;
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetRepository().check();
   runApp(NileApp(
     appRouter: AppRouter(),
+    isLogin: isLogin,
   ));
 }
 
-class NileApp extends StatelessWidget {
+class NileApp extends StatefulWidget {
   final AppRouter appRouter;
-  const NileApp({
-    Key? key,
-    required this.appRouter,
-  }) : super(key: key);
+  static int? save;
+  int? isLogin;
 
+  NileApp({
+    Key? key,
+    required this.isLogin,
+    required this.appRouter,
+  });
+  @override
+  State<NileApp> createState() => _NileAppState();
+}
+
+class _NileAppState extends State<NileApp> {
   @override
   Widget build(BuildContext context) {
-    SqlDb db = SqlDb();
-    print(db.db);
+    print("ddddddddddddd");
+
+    NileApp.save = GetRepository.UID;
+    print("${NileApp.save} ------------)))--------");
+
     return ScreenUtilInit(
       child: MultiBlocProvider(
         providers: [
@@ -49,12 +64,15 @@ class NileApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => UserBloc(),
+          ),
+          BlocProvider(
+            create: (context) => UnitBloc(),
           )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: '/',
-          onGenerateRoute: appRouter.generateRoute,
+          initialRoute: NileApp.save == null ? '/login' : "/AddUnitScreen",
+          onGenerateRoute: widget.appRouter.generateRoute,
         ),
       ),
     );

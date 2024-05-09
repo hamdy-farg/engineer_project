@@ -1,7 +1,7 @@
-import 'package:engneers_app/constants/colors/colors.dart';
-import 'package:engneers_app/data/api/geo_locator.dart';
-import 'package:engneers_app/presentaion/widgets/text_form_field_widget.dart';
-import 'package:engneers_app/presentaion/widgets/wide_button_widget.dart';
+import 'package:engineer_app/constants/colors/colors.dart';
+import 'package:engineer_app/data/api/geo_locator.dart';
+import 'package:engineer_app/presentaion/widgets/text_form_field_widget.dart';
+import 'package:engineer_app/presentaion/widgets/wide_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

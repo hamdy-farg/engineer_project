@@ -1,5 +1,6 @@
-import 'package:engneers_app/data/model/invoise_model.dart';
-import 'package:engneers_app/mahmoud/DetailPage.dart';
+import 'package:engineer_app/mahmoud/DetailPage.dart';
+import 'package:engineer_app/data/model/invoise_model.dart';
+import 'package:engineer_app/mahmoud/DetailPage.dart';
 import 'package:flutter/material.dart';
 
 class MyWidget extends StatelessWidget {
