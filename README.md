@@ -1,16 +1,24 @@
+<<<<<<< HEAD
 # engineer_app
+=======
+# Nile Windows UPVC windows and Doors
+>>>>>>> 6fdc025e3561414260fe58804b3163a93ea3b0fb
 
 A new Flutter project.
 
 ## Getting Started
+This app provides a great experience to companies that work in door setup and windows in units, 
+so i created this app for this company .
+Who will use it? 
+engineer who goes to units to take measurements of the door or window and takes a photo of it and at the end, type all the details, export it as a pdf, and get the current location . 
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+# Accomplishments:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1 : Create UI UX 
+2: :Implement this UI with Flutter and Dart. 
+3: Work with BLOC/cubit state management and design patterns for bloc
+4: Work with SQFLite to store user data units and items and use (shared preferences )to persist user logins. 
+5: Provide an app working on all device screens with (screen util package )
+6: Provide a feature. Go to Google Maps and create a link to the user with (url_luncher and geolocator )
+7: create a  pdf to all the units with (pdf package) .... in progress 
