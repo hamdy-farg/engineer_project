@@ -19,9 +19,8 @@
 Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
 
-![login_auth (1)](https://github.com/hamdy-farg/engineer_project/assets/85253967/d6d67406-69fd-40d9-9293-d67520bc12db | width =100 )  | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3)
-
-
+<img src="https://github.com/hamdy-farg/engineer_project/assets/85253967/d6d67406-69fd-40d9-9293-d67520bc12db" width ="100" height="100" )  | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3)
+:-------------------------:|:-------------------------:
 
 ![confirm_number_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b2f0f4dd-4495-4560-86a4-460d947503c5)
 ![reset_password_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b680cbbd-17c7-42e4-9f4f-7cecdfdea053)
