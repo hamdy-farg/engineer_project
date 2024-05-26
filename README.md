@@ -15,7 +15,7 @@
 5: Provide an app working on all device screens with (screen util package )
 6: Provide a feature. Go to Google Maps and create a link to the user with (url_luncher and geolocator )
 7: create a  pdf to all the units with (pdf package) .... in progress 
-
+Solarized dark             |  Solarized Ocean
  ![login_auth (1)](https://github.com/hamdy-farg/engineer_project/assets/85253967/59eac62c-ec82-4a1a-b030-39178f170b06)
  | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3) 
  :--------LOGIN password-------------:|:-----------REGISTER password----------:
