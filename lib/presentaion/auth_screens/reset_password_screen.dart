@@ -2,6 +2,8 @@ import 'package:engineer_app/bussniss_logic/cubit/password_secure_cubit.dart';
 import 'package:engineer_app/bussniss_logic/db_handel_bloc/users/bloc/user_bloc.dart';
 import 'package:engineer_app/constants/colors/colors.dart';
 import 'package:engineer_app/constants/diamentions/diamentions.dart';
+import 'package:engineer_app/constants/string/screens_name.dart';
+import 'package:engineer_app/presentaion/operation_screens/item_operations/item_screen.dart';
 import 'package:engineer_app/presentaion/widgets/text_form_field_widget.dart';
 import 'package:engineer_app/presentaion/widgets/text_widgets.dart';
 import 'package:engineer_app/presentaion/widgets/wide_button_widget.dart';
@@ -21,7 +23,8 @@ class ResetPassword extends StatelessWidget {
     final confirmpasswordSecureCubit =
         BlocProvider.of<ConfirmPasswordSecureCubit>(context);
     Daimentions _daimentions = Daimentions(context: context);
-
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+    print(userBloc.state);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -43,7 +46,8 @@ class ResetPassword extends StatelessWidget {
                 .showSnackBar(SnackBar(content: Text(state.message)));
           } else if (state is UserInitial) {
             // to go to login page
-            Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+            Navigator.pushNamedAndRemoveUntil(
+                context, Screens.LoginScreen, (route) => false);
 
             // to show snackbar
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -132,17 +136,24 @@ class ResetPassword extends StatelessWidget {
                       );
                     }),
                     BlocBuilder<UserBloc, UserState>(
+                      bloc: BlocProvider.of<UserBloc>(context),
                       builder: (context, state) {
                         return WidButton(
                             onTap: () {
+                              print(userBloc.state);
+
                               if (formKey.currentState!.validate()) {
-                                UserBloc userBloc =
-                                    BlocProvider.of<UserBloc>(context);
-                                (state as userExists).user.password =
-                                    password_controller.text;
-                                print((state as userExists).user.password);
-                                userBloc.add(
-                                    UpdateUser((state as userExists).user));
+                                print(userBloc.state);
+
+                                if (state is userExists) {
+                                  state.user.password =
+                                      password_controller.text;
+
+                                  print(state.user.password);
+                                  userBloc.add(UpdateUser(state.user));
+                                } else {
+                                  print("object");
+                                }
                               }
                             },
                             text: "Update",

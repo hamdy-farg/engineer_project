@@ -15,7 +15,6 @@ class AppRouter {
   int? isLogin;
 
   Route? generateRoute(RouteSettings settings) {
-
     switch (settings.name) {
       case Screens.LoginScreen:
         return MaterialPageRoute(builder: (_) => LoginScreen());

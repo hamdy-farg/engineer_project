@@ -10,33 +10,49 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddUnitScreen extends StatelessWidget {
+class AddUnitScreen extends StatefulWidget {
   AddUnitScreen({super.key});
+
+  @override
+  State<AddUnitScreen> createState() => _AddUnitScreenState();
+}
+
+class _AddUnitScreenState extends State<AddUnitScreen> {
   TextEditingController _SearchTextController = TextEditingController();
+
   bool _isSearching = false;
+  Daimentions? _daimentions;
+  dynamic? searchingCubit;
+  UnitBloc? unitBloc;
   int counter = 0;
   @override
-  Widget build(BuildContext context) {
-    // to check user is retrieve from sharedprefs
+  void initState() {
     int user;
     GetRepository().check();
-
     // to get userID from repo
     user = GetRepository.UID!;
 
     // to repiar diamention of the page
-    Daimentions _daimentions = Daimentions(context: context);
+    _daimentions = Daimentions(context: context);
 
     // to use searchingCubit
-    final searchingCubit = BlocProvider.of<SearchingCubit>(context);
+    searchingCubit = BlocProvider.of<SearchingCubit>(context);
 
     //  to Use UnitBloc
-    UnitBloc unitBloc = context.read<UnitBloc>();
+    unitBloc = context.read<UnitBloc>();
 
     // the event to load Units of the user by his UID
-    unitBloc.add(
+
+    unitBloc!.add(
       LoadAllUnits(UID: user),
     );
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // to check user is retrieve from sharedprefs
 
     return Scaffold(
       appBar: PreferredSize(
@@ -121,8 +137,8 @@ class AddUnitScreen extends StatelessWidget {
                               return Container(
                                 width: double.infinity,
                                 margin: EdgeInsets.symmetric(
-                                    vertical: _daimentions.Height5,
-                                    horizontal: _daimentions.Width5),
+                                    vertical: _daimentions!.Height5,
+                                    horizontal: _daimentions!.Width5),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
@@ -148,8 +164,8 @@ class AddUnitScreen extends StatelessWidget {
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: _daimentions.Width5,
-                                          vertical: _daimentions.Height10),
+                                          horizontal: _daimentions!.Width5,
+                                          vertical: _daimentions!.Height10),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -180,12 +196,12 @@ class AddUnitScreen extends StatelessWidget {
                                             ],
                                           ),
                                           SizedBox(
-                                            height: _daimentions.Height5,
+                                            height: _daimentions!.Height5,
                                           ),
                                           Text(
                                               "description : ${state.Units[index].location_description}}"),
                                           SizedBox(
-                                            height: _daimentions.Height5,
+                                            height: _daimentions!.Height5,
                                           ),
                                           Row(
                                             mainAxisAlignment:
@@ -196,7 +212,7 @@ class AddUnitScreen extends StatelessWidget {
                                               ),
                                               IconButton(
                                                   onPressed: () {
-                                                    unitBloc.add(DeleteUnit(
+                                                    unitBloc!.add(DeleteUnit(
                                                         id: state
                                                             .Units[index].ID,
                                                         UID: state

@@ -1,5 +1,5 @@
 import 'package:engineer_app/data/model/invoise_model.dart';
-import 'package:engineer_app/mahmoud/PdfPreviewPage.dart';
+import 'package:engineer_app/pdf_converter/PdfPreviewPage.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter/material.dart';
@@ -41,13 +41,13 @@ class DetailPage extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Customer',
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
                   Expanded(
                     child: Text(
                       invoice.EngName,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -62,7 +62,7 @@ class DetailPage extends StatelessWidget {
                 children: [
                   Text(
                     'Invoice Items',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   
                 ],

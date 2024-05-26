@@ -4,6 +4,7 @@ import 'package:engineer_app/bussniss_logic/cubit/password_secure_cubit.dart';
 import 'package:engineer_app/bussniss_logic/cubit/searching_cubit.dart';
 import 'package:engineer_app/bussniss_logic/db_handel_bloc/bloc/unit_bloc.dart';
 import 'package:engineer_app/bussniss_logic/db_handel_bloc/users/bloc/user_bloc.dart';
+import 'package:engineer_app/constants/string/screens_name.dart';
 import 'package:engineer_app/data/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,14 +23,14 @@ void main() async {
 }
 
 class NileApp extends StatefulWidget {
-  final AppRouter appRouter;
+  final AppRouter? appRouter;
   static int? save;
   int? isLogin;
 
   NileApp({
     Key? key,
     required this.isLogin,
-    required this.appRouter,
+    this.appRouter,
   });
   @override
   State<NileApp> createState() => _NileAppState();
@@ -71,8 +72,10 @@ class _NileAppState extends State<NileApp> {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: NileApp.save == null ? '/login' : "/AddUnitScreen",
-          onGenerateRoute: widget.appRouter.generateRoute,
+          initialRoute: NileApp.save == null
+              ? Screens.LoginScreen
+              : Screens.AddUnitScreen,
+          onGenerateRoute: widget.appRouter!.generateRoute,
         ),
       ),
     );
