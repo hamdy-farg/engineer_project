@@ -1,4 +1,4 @@
-![login_auth (1)](https://github.com/hamdy-farg/engineer_project/assets/85253967/256a147e-cf65-4fdb-b558-af7fa221ec24)<<<<<<< HEAD
+![reset_password_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/ad5d6319-374f-4e81-9514-7c369dbbbdf2)![login_auth (1)](https://github.com/hamdy-farg/engineer_project/assets/85253967/256a147e-cf65-4fdb-b558-af7fa221ec24)<<<<<<< HEAD
 # engineer_app
 =======
 # Nile Windows UPVC windows and Doors
@@ -16,11 +16,14 @@
 6: Provide a feature. Go to Google Maps and create a link to the user with (url_luncher and geolocator )
 7: create a  pdf to all the units with (pdf package) .... in progress 
 
-Solarized dark             |  Solarized Ocean
-:-------------------------:|:-------------------------:
  ![login_auth (1)](https://github.com/hamdy-farg/engineer_project/assets/85253967/59eac62c-ec82-4a1a-b030-39178f170b06)
- | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3) |![confirm_number_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b2f0f4dd-4495-4560-86a4-460d947503c5) |![reset_password_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b680cbbd-17c7-42e4-9f4f-7cecdfdea053)
-:-------------------------:|:-------------------------:
+ | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3) 
+ :--------LOGIN password-------------:|:-----------REGISTER password----------:
+
+ ![confirm_number_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b2f0f4dd-4495-4560-86a4-460d947503c5) |
+ ![reset_password_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b680cbbd-17c7-42e4-9f4f-7cecdfdea053) 
+:--------CONFIRM password-------------:|:-----------RESEt password----------:
+
 
 ![main_unit_apps](https://github.com/hamdy-farg/engineer_project/assets/85253967/578bb93c-6c4f-460f-91d8-0d94c1139f45)
 ![unit_app](https://github.com/hamdy-farg/engineer_project/assets/85253967/355adf46-2703-450c-ac8d-50628adecc2d)
