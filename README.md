@@ -18,12 +18,10 @@
 
 Solarized dark             |  Solarized Ocean
 :-------------------------:|:-------------------------:
-
-<img src="https://github.com/hamdy-farg/engineer_project/assets/85253967/d6d67406-69fd-40d9-9293-d67520bc12db" width ="100" height="100" )  | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3)
+ ![login_auth (1)](https://github.com/hamdy-farg/engineer_project/assets/85253967/59eac62c-ec82-4a1a-b030-39178f170b06)
+ | ![regiser_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/26f7a90b-8560-4ac2-9f8c-b43ee6bbbcc3) |![confirm_number_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b2f0f4dd-4495-4560-86a4-460d947503c5) |![reset_password_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b680cbbd-17c7-42e4-9f4f-7cecdfdea053)
 :-------------------------:|:-------------------------:
 
-![confirm_number_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b2f0f4dd-4495-4560-86a4-460d947503c5)
-![reset_password_auth](https://github.com/hamdy-farg/engineer_project/assets/85253967/b680cbbd-17c7-42e4-9f4f-7cecdfdea053)
 ![main_unit_apps](https://github.com/hamdy-farg/engineer_project/assets/85253967/578bb93c-6c4f-460f-91d8-0d94c1139f45)
 ![unit_app](https://github.com/hamdy-farg/engineer_project/assets/85253967/355adf46-2703-450c-ac8d-50628adecc2d)
 ![main_items_app](https://github.com/hamdy-farg/engineer_project/assets/85253967/dcf21f26-f54a-48b2-ab37-5435d8c8a42d)
